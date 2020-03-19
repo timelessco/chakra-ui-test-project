@@ -7,7 +7,10 @@ import {
   Tag,
   Flex,
   MenuList,
-  Button
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement
 } from "@chakra-ui/core";
 import map from "lodash/map";
 import indexOf from "lodash/indexOf";
@@ -54,6 +57,22 @@ function DropDown(props) {
         </MenuButton>
       </Flex>
       <MenuList>
+        <InputGroup size="sm" mx={2}>
+          <InputLeftElement
+            children={<Icon name="search" color="gray.400" pl={6} />}
+          />
+          <Input
+            maxH="20"
+            type="text"
+            placeholder="Search Types..."
+            border="none"
+            focusBorderColor="white"
+            bg="gray.100"
+            fontSize={14}
+            pl={12}
+            borderRadius={3}
+          />
+        </InputGroup>
         {map(DropDownArray, (item, index) => {
           return (
             <Flex
@@ -62,13 +81,19 @@ function DropDown(props) {
               onClick={() => {
                 CheckboxClicked(item);
               }}
-              mb={5}
-              ml={6}
+              borderRadius={3}
+              py={2}
+              pl={5}
+              mx={2}
+              my={1}
+              bg={
+                indexOf(selectedArray, item) === -1 ? "white.200" : "gray.100"
+              }
             >
               <Button
                 variant="outline"
                 size="3px"
-                variantColor="black"
+                variantColor="#ccc"
                 maxW="3px"
                 alignSelf="stretch"
                 bg={
@@ -82,7 +107,7 @@ function DropDown(props) {
                   color="white"
                 ></Icon>
               </Button>
-              <Box ml={5} fontSize={12} cursor="pointer">
+              <Box ml={5} fontSize={14} cursor="pointer">
                 {item}
               </Box>
             </Flex>
