@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Stack, ThemeProvider, MenuGroup, Flex } from "@chakra-ui/core";
 import "./App.css";
 import { FiImage } from "react-icons/fi";
@@ -7,7 +7,7 @@ import { IoIosPricetag } from "react-icons/io";
 import { GoSettings } from "react-icons/go";
 import { FaBuilding } from "react-icons/fa";
 
-import EachMenuItem from "./components/header.js";
+import DropDown from "./components/header.js";
 function App() {
   return (
     <ThemeProvider>
@@ -20,34 +20,34 @@ function App() {
       >
         <MenuGroup>
           <Flex>
-            <EachMenuItem
+            <DropDown
               leftIcon={FiImage}
               menuItemName="Type"
               TagNumber={374}
             />
-             <EachMenuItem
+             <DropDown
               leftIcon={TiLocationOutline}
               menuItemName="Location"
               TagNumber={20}
             />
-             <EachMenuItem
+             <DropDown
               leftIcon={FaBuilding}
               menuItemName="Apartment"
               TagNumber={374}
             />
-             <EachMenuItem
+             <DropDown
               leftIcon={IoIosPricetag}
               menuItemName="Tag"
               TagNumber={178}
             />
-             <EachMenuItem
-              leftIcon={FiImage}
+             <DropDown
+              leftIcon={GoSettings}
               menuItemName="MoreFilters"
             />
             
           </Flex>
         </MenuGroup>
-        <EachMenuItem  menuItemName="sort by Recommended" />
+        <DropDown  menuItemName="sort by Recommended" />
       </Stack>
     </ThemeProvider>
   );
