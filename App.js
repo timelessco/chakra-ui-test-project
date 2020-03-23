@@ -80,12 +80,23 @@ function App() {
         >
           <Pagination offsetValue={offsetValue} limitValue={limitValue} />
         </Flex>
-        <Text>page {pageNumber} of 6</Text>
+        <Text fontSize={15} color="gray.700">
+          Page {pageNumber} of 6
+        </Text>
         <Flex justifyContent="center" pb={3}>
-          <Button onClick={prevButtonClick} size="sm" mr={2}>
+          <Button
+            onClick={prevButtonClick}
+            size="sm"
+            mr={2}
+            _focus={{ outline: "none", boxShadow: "1px 1px 1px 1px" }}
+          >
             prev
           </Button>
-          <Button onClick={nextButtonClick} size="sm">
+          <Button
+            onClick={nextButtonClick}
+            size="sm"
+            _focus={{ outline: "none", boxShadow: "1px 1px 1px 1px" }}
+          >
             next
           </Button>
         </Flex>
