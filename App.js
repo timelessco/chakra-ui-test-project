@@ -8,6 +8,7 @@ import {
   Text
 } from "@chakra-ui/core";
 import "./App.css";
+import map from "lodash/map";
 import { FiImage } from "react-icons/fi";
 import { TiLocationOutline } from "react-icons/ti";
 import { IoIosPricetag } from "react-icons/io";
@@ -19,28 +20,12 @@ function App() {
   const [offsetValue, setOffsetValue] = useState(0);
   const [limitValue, setLimitValue] = useState(9);
   const [pageNumber, setPageNumber] = useState(1);
-  const nextButtonClick = () => {
-    if (limitValue < 54) {
-      setOffsetValue(offsetValue => offsetValue + 9);
-      setLimitValue(limitValue => limitValue + 9);
-      setPageNumber(pageNumber + 1);
-    } else {
-      setOffsetValue(54 - 9);
-      setLimitValue(54);
-      setPageNumber(6);
-    }
+  const paginationButtonClick = (numberClicked) => {
+   setOffsetValue(numberClicked*9);
+   setLimitValue((numberClicked+1)*9);
+   setPageNumber(numberClicked+1);
   };
-  const prevButtonClick = () => {
-    if (offsetValue > 0) {
-      setOffsetValue(offsetValue => offsetValue - 9);
-      setLimitValue(limitValue => limitValue - 9);
-      setPageNumber(pageNumber - 1);
-    } else {
-      setOffsetValue(0);
-      setLimitValue(9);
-      setPageNumber(1);
-    }
-  };
+  
   return (
     <ThemeProvider>
       <Stack maxW={1300} mt={10} mx="auto">
@@ -84,21 +69,16 @@ function App() {
           Page {pageNumber} of 6
         </Text>
         <Flex justifyContent="center" pb={3}>
-          <Button
-            onClick={prevButtonClick}
+        {map([1,2,3,4,5,6],(item,index)=>{
+           return <Button
+            onClick={()=>paginationButtonClick(index)}
             size="sm"
             mr={2}
             _focus={{ outline: "none", boxShadow: "1px 1px 1px 1px" }}
           >
-            prev
-          </Button>
-          <Button
-            onClick={nextButtonClick}
-            size="sm"
-            _focus={{ outline: "none", boxShadow: "1px 1px 1px 1px" }}
-          >
-            next
-          </Button>
+            {item}
+         </Button>
+        })}
         </Flex>
       </Stack>
     </ThemeProvider>
