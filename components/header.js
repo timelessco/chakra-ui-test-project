@@ -16,9 +16,9 @@ import map from "lodash/map";
 import indexOf from "lodash/indexOf";
 import remove from "lodash/remove";
 function DropDown(props) {
-  const DropDownArray = ["Apartment", "Corporate", "Floorplan", "Photo"];
+  const dropDownArray = ["Apartment", "Corporate", "Floorplan", "Photo"];
   const [selectedArray, setSelectedArray] = useState([]);
-  const CheckboxClicked = selectedItem => {
+  const checkboxClicked = selectedItem => {
     if (indexOf(selectedArray, selectedItem) === -1) {
       setSelectedArray([...selectedArray, selectedItem]);
     } else {
@@ -73,13 +73,13 @@ function DropDown(props) {
             borderRadius={3}
           />
         </InputGroup>
-        {map(DropDownArray, (item, index) => {
+        {map(dropDownArray, (item, index) => {
           return (
             <Flex
               key={index}
               justifyContent="left"
               onClick={() => {
-                CheckboxClicked(item);
+                checkboxClicked(item);
               }}
               borderRadius={3}
               py={2}
@@ -93,7 +93,7 @@ function DropDown(props) {
               <Button
                 variant="outline"
                 size="3px"
-                variantColor="#ccc"
+                variantColor=""
                 maxW="3px"
                 alignSelf="stretch"
                 bg={
