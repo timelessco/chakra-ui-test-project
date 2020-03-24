@@ -97,7 +97,7 @@ function DropDown(props) {
                 maxW="3px"
                 alignSelf="stretch"
                 bg={
-                  indexOf(selectedArray, item) === -1 ? "white.100" : "blue.200"
+                  indexOf(selectedArray, item) === -1 ? "white.100" : "blue.300"
                 }
               >
                 <Icon

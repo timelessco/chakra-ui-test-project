@@ -5,7 +5,8 @@ import {
   MenuGroup,
   Flex,
   Button,
-  Text
+  Text,
+  IconButton
 } from "@chakra-ui/core";
 import "./App.css";
 import map from "lodash/map";
@@ -20,12 +21,25 @@ function App() {
   const [offsetValue, setOffsetValue] = useState(0);
   const [limitValue, setLimitValue] = useState(9);
   const [pageNumber, setPageNumber] = useState(1);
-  const paginationButtonClick = (numberClicked) => {
-   setOffsetValue(numberClicked*9);
-   setLimitValue((numberClicked+1)*9);
-   setPageNumber(numberClicked+1);
+  const paginationButtonClick = numberClicked => {
+    setOffsetValue(numberClicked * 9);
+    setLimitValue((numberClicked + 1) * 9);
+    setPageNumber(numberClicked + 1);
   };
-  
+  const previousButtonClick = () => {
+    if (offsetValue !== 0) {
+      setOffsetValue(offsetValue - 9);
+      setLimitValue(limitValue - 9);
+      setPageNumber(pageNumber - 1);
+    }
+  };
+  const nextButtonClick = () => {
+    if (pageNumber < 6) {
+      setOffsetValue(offsetValue + 9);
+      setLimitValue(limitValue + 9);
+      setPageNumber(pageNumber + 1);
+    }
+  };
   return (
     <ThemeProvider>
       <Stack maxW={1300} mt={10} mx="auto">
@@ -69,16 +83,41 @@ function App() {
           Page {pageNumber} of 6
         </Text>
         <Flex justifyContent="center" pb={3}>
-        {map([1,2,3,4,5,6],(item,index)=>{
-           return <Button
-            onClick={()=>paginationButtonClick(index)}
+          <IconButton
+            aria-label="previous"
+            icon="chevron-left"
+            size="sm"
+            onClick={previousButtonClick}
+            mr={2}
+            borderWidth={0.5}
+            _focus={{ outline: "none" }}
+            _hover={{ bg: "none" }}
+          ></IconButton>
+          {map([1, 2, 3, 4, 5, 6], (item, index) => {
+            return (
+              <Button
+                onClick={() => paginationButtonClick(index)}
+                size="sm"
+                mr={2}
+                borderWidth={0.5}
+                bg={pageNumber === index + 1 ? "blue.300" : "white.100"}
+                _focus={{ outline: "none" }}
+                _hover={{ bg: "none" }}
+              >
+                {item}
+              </Button>
+            );
+          })}
+          <IconButton
+            aria-label="next"
+            icon="chevron-right"
             size="sm"
             mr={2}
-            _focus={{ outline: "none", boxShadow: "1px 1px 1px 1px" }}
-          >
-            {item}
-         </Button>
-        })}
+            onClick={nextButtonClick}
+            borderWidth={0.5}
+            _focus={{ outline: "none" }}
+            _hover={{ bg: "none" }}
+          ></IconButton>
         </Flex>
       </Stack>
     </ThemeProvider>
