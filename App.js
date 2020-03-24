@@ -89,8 +89,9 @@ function App() {
             size="sm"
             onClick={previousButtonClick}
             mr={2}
-            borderWidth={0.5}
-            _focus={{ outline: "none" }}
+            bg="gray.300"
+            visibility={pageNumber === 1 ? "hidden" : "visible"}
+            _focus={{ outline: "none", bg: "none" }}
             _hover={{ bg: "none" }}
           ></IconButton>
           {map([1, 2, 3, 4, 5, 6], (item, index) => {
@@ -114,7 +115,8 @@ function App() {
             size="sm"
             mr={2}
             onClick={nextButtonClick}
-            borderWidth={0.5}
+            bg="gray.300"
+            visibility={pageNumber === 6 ? "hidden" : "visible"}
             _focus={{ outline: "none" }}
             _hover={{ bg: "none" }}
           ></IconButton>
